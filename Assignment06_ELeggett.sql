@@ -367,19 +367,19 @@ GO
 -- GO
 
 --Step 4: Create a new view to display the results of the previous query.
-CREATE VIEW vProductsbyCategories
-	AS
-		SELECT CategoryName
-			,ProductName
-			,UnitPrice
-		FROM vCategories
-		JOIN vProducts
-			ON vProducts.CategoryID=vCategories.CategoryID
-;
-GO
+-- CREATE VIEW vProductsbyCategories
+-- 	AS
+-- 		SELECT CategoryName
+-- 			,ProductName
+-- 			,UnitPrice
+-- 		FROM vCategories
+-- 		JOIN vProducts
+-- 			ON vProducts.CategoryID=vCategories.CategoryID
+-- ;
+-- GO
 
--- Step 5: Alter view to order its results by category and product.
-ALTER VIEW vProductsbyCategories
+-- Step 5: Update view to order its results by category and product.
+CREATE VIEW vProductsbyCategories
 	AS
 		SELECT TOP 10000
 			CategoryName
@@ -434,19 +434,19 @@ GO
 -- GO
 
 --Step 4: Create a new view to display the results of the previous query.
-CREATE VIEW vInventoriesByProductsByDates
-	AS	
-		SELECT ProductName
-			,InventoryDate
-			,Count
-		FROM vProducts
-		JOIN vInventories
-			ON vProducts.ProductID=vInventories.ProductID
-;
-GO
+-- CREATE VIEW vInventoriesByProductsByDates
+-- 	AS	
+-- 		SELECT ProductName
+-- 			,InventoryDate
+-- 			,Count
+-- 		FROM vProducts
+-- 		JOIN vInventories
+-- 			ON vProducts.ProductID=vInventories.ProductID
+-- ;
+-- GO
 
--- Step 5: Alter view to order results by product, inventory date, and count.
-ALTER VIEW vInventoriesByProductsByDates
+-- Step 5: Update view to order results by product, inventory date, and count.
+CREATE VIEW vInventoriesByProductsByDates
 	AS	
 		SELECT TOP 10000
 			ProductName
@@ -524,19 +524,19 @@ GO
 -- GO
 
 --Step 6: Create a new view to display the results of the previous query.
-CREATE VIEW vInventoriesByEmployeesByDates
-	AS
-		SELECT
-			DISTINCT(InventoryDate)
-			,EmployeeFirstName+' '+EmployeeLastName AS EmployeeName
-		FROM vInventories
-		JOIN vEmployees
-			ON vInventories.EmployeeID=vEmployees.EmployeeID
-;
-GO
+-- CREATE VIEW vInventoriesByEmployeesByDates
+-- 	AS
+-- 		SELECT
+-- 			DISTINCT(InventoryDate)
+-- 			,EmployeeFirstName+' '+EmployeeLastName AS EmployeeName
+-- 		FROM vInventories
+-- 		JOIN vEmployees
+-- 			ON vInventories.EmployeeID=vEmployees.EmployeeID
+-- ;
+-- GO
 
--- Step 7: Alter view to order results by inventory date.
-ALTER VIEW vInventoriesByEmployeesByDates
+-- Step 7: Update view to order results by inventory date.
+CREATE VIEW vInventoriesByEmployeesByDates
 	AS
 		SELECT DISTINCT TOP 10000
 			InventoryDate
@@ -598,22 +598,22 @@ GO
 -- GO
 
 --Step 4: Create a new view to display the results of the previous query.
-CREATE VIEW vInventoriesByProductsByCategories
-	AS
-		SELECT CategoryName
-			,ProductName
-			,InventoryDate
-			,Count
-		FROM vInventories
-		JOIN vProducts
-			ON vProducts.ProductID=vInventories.ProductID
-		JOIN vCategories
-			ON vCategories.CategoryID=vProducts.CategoryID
-;
-GO
+-- CREATE VIEW vInventoriesByProductsByCategories
+-- 	AS
+-- 		SELECT CategoryName
+-- 			,ProductName
+-- 			,InventoryDate
+-- 			,Count
+-- 		FROM vInventories
+-- 		JOIN vProducts
+-- 			ON vProducts.ProductID=vInventories.ProductID
+-- 		JOIN vCategories
+-- 			ON vCategories.CategoryID=vProducts.CategoryID
+-- ;
+-- GO
 
--- Step 5: Alter view to order results by category, product, date, and count.
-ALTER VIEW vInventoriesByProductsByCategories
+-- Step 5: Update view to order results by category, product, date, and count.
+CREATE VIEW vInventoriesByProductsByCategories
 	AS
 		SELECT TOP 10000
 			CategoryName
@@ -711,25 +711,25 @@ GO
 -- GO
 
 --Step 4: Create a new view to display the results of the previous query.
-CREATE VIEW vInventoriesByProductsByEmployees
-	AS
-		SELECT CategoryName
-			,ProductName
-			,InventoryDate
-			,Count
-			,EmployeeFirstName+' '+EmployeeLastName AS EmployeeName
-		FROM vInventories
-		JOIN vProducts
-			ON vProducts.ProductID=vInventories.ProductID
-		JOIN vCategories
-			ON vCategories.CategoryID=vProducts.CategoryID
-		JOIN vEmployees
-			ON vInventories.EmployeeID=vEmployees.EmployeeID
-;
-GO
+-- CREATE VIEW vInventoriesByProductsByEmployees
+-- 	AS
+-- 		SELECT CategoryName
+-- 			,ProductName
+-- 			,InventoryDate
+-- 			,Count
+-- 			,EmployeeFirstName+' '+EmployeeLastName AS EmployeeName
+-- 		FROM vInventories
+-- 		JOIN vProducts
+-- 			ON vProducts.ProductID=vInventories.ProductID
+-- 		JOIN vCategories
+-- 			ON vCategories.CategoryID=vProducts.CategoryID
+-- 		JOIN vEmployees
+-- 			ON vInventories.EmployeeID=vEmployees.EmployeeID
+-- ;
+-- GO
 
--- Step 5: Alter view to order results by inventory date, category, product, and employee.
-ALTER VIEW vInventoriesByProductsByEmployees
+-- Step 5: Update view to order results by inventory date, category, product, and employee.
+CREATE VIEW vInventoriesByProductsByEmployees
 	AS
 		SELECT TOP 10000
 			CategoryName
@@ -855,32 +855,32 @@ GO
 -- GO
 
 --Step 6: Create a new view to display the results of the previous query.
-CREATE VIEW vInventoriesForChaiAndChangByEmployees
-	AS
-		SELECT
-			CategoryName
-			,ProductName
-			,InventoryDate
-			,Count
-			,EmployeeFirstName+' '+EmployeeLastName AS EmployeeName
-		FROM vProducts
-		JOIN vInventories
-			ON vProducts.ProductID=vInventories.ProductID
-			AND vProducts.ProductID IN(
-				SELECT ProductID
-				FROM vProducts
-				WHERE ProductName
-				IN('Chai','Chang')
-			)
-		JOIN vCategories
-			ON vCategories.CategoryID=vProducts.CategoryID
-		JOIN vEmployees
-			ON vInventories.EmployeeID=vEmployees.EmployeeID
-;
-GO
+-- CREATE VIEW vInventoriesForChaiAndChangByEmployees
+-- 	AS
+-- 		SELECT
+-- 			CategoryName
+-- 			,ProductName
+-- 			,InventoryDate
+-- 			,Count
+-- 			,EmployeeFirstName+' '+EmployeeLastName AS EmployeeName
+-- 		FROM vProducts
+-- 		JOIN vInventories
+-- 			ON vProducts.ProductID=vInventories.ProductID
+-- 			AND vProducts.ProductID IN(
+-- 				SELECT ProductID
+-- 				FROM vProducts
+-- 				WHERE ProductName
+-- 				IN('Chai','Chang')
+-- 			)
+-- 		JOIN vCategories
+-- 			ON vCategories.CategoryID=vProducts.CategoryID
+-- 		JOIN vEmployees
+-- 			ON vInventories.EmployeeID=vEmployees.EmployeeID
+-- ;
+-- GO
 
--- Step 7: Alter view to order results by inventory date, category, and product.
-ALTER VIEW vInventoriesForChaiAndChangByEmployees
+-- Step 7: Update view to order results by inventory date, category, and product.
+CREATE VIEW vInventoriesForChaiAndChangByEmployees
 	AS
 		SELECT TOP 10000
 			CategoryName
@@ -954,18 +954,18 @@ GO
 -- GO
 
 --Step 5: Create a new view to display the results of the previous query.
-CREATE VIEW vEmployeesByManager
-	AS
-		SELECT Sup.EmployeeFirstName+' '+Sup.EmployeeLastName AS Manager
-			,Emp.EmployeeFirstName+' '+Emp.EmployeeLastName AS Employee
-		FROM vEmployees Sup
-		JOIN vEmployees Emp
-			ON Sup.EmployeeID=Emp.ManagerID
-;
-GO
+-- CREATE VIEW vEmployeesByManager
+-- 	AS
+-- 		SELECT Sup.EmployeeFirstName+' '+Sup.EmployeeLastName AS Manager
+-- 			,Emp.EmployeeFirstName+' '+Emp.EmployeeLastName AS Employee
+-- 		FROM vEmployees Sup
+-- 		JOIN vEmployees Emp
+-- 			ON Sup.EmployeeID=Emp.ManagerID
+-- ;
+-- GO
 
---Step 6: Alter view to order results by manager.
-ALTER VIEW vEmployeesByManager
+--Step 6: Update view to order results by manager.
+CREATE VIEW vEmployeesByManager
 	AS
 		SELECT TOP 10000
 			Sup.EmployeeFirstName+' '+Sup.EmployeeLastName AS Manager
@@ -1002,16 +1002,16 @@ GO
 -- FROM vEmployees
 
 --Step 2: Join views by CategoryID, ProductID, and EmployeeID.
-SELECT *
-FROM vCategories
-JOIN vProducts
-	ON vCategories.CategoryID=vProducts.CategoryID
-JOIN vInventories
-	ON vProducts.ProductID=vInventories.ProductID
-JOIN vEmployees
-	ON vInventories.EmployeeID=vEmployees.EmployeeID
-;
-GO
+-- SELECT *
+-- FROM vCategories
+-- JOIN vProducts
+-- 	ON vCategories.CategoryID=vProducts.CategoryID
+-- JOIN vInventories
+-- 	ON vProducts.ProductID=vInventories.ProductID
+-- JOIN vEmployees
+-- 	ON vInventories.EmployeeID=vEmployees.EmployeeID
+-- ;
+-- GO
 
 --Step 3: Eliminate duplicate columns by removing * and adding column names.
 -- SELECT vCategories.CategoryID
@@ -1061,33 +1061,33 @@ GO
 -- GO
 
 --Step 4: Create a new view to display the results of the previous of query.
-CREATE VIEW vInventoriesByProductsByCategoriesByEmployees
-	AS
-		SELECT vCategories.CategoryID
-			,vCategories.CategoryName
-			,vProducts.ProductID
-			,vProducts.ProductName
-			,vProducts.UnitPrice
-			,vInventories.InventoryID
-			,vInventories.InventoryDate
-			,vInventories.Count
-			,Emp.EmployeeID
-			,Emp.EmployeeFirstName+' '+Emp.EmployeeLastName AS Employee
-			,Sup.EmployeeFirstName+' '+Sup.EmployeeLastName AS Manager
-		FROM vEmployees Sup
-		JOIN vEmployees Emp
-			ON Sup.EmployeeID=Emp.ManagerID
-		JOIN vInventories
-			ON vInventories.EmployeeID=Emp.EmployeeID
-		JOIN vProducts
-			ON vProducts.ProductID=vInventories.ProductID
-		JOIN vCategories
-			ON vCategories.CategoryID=vProducts.CategoryID
-;
-GO
+-- CREATE VIEW vInventoriesByProductsByCategoriesByEmployees
+-- 	AS
+-- 		SELECT vCategories.CategoryID
+-- 			,vCategories.CategoryName
+-- 			,vProducts.ProductID
+-- 			,vProducts.ProductName
+-- 			,vProducts.UnitPrice
+-- 			,vInventories.InventoryID
+-- 			,vInventories.InventoryDate
+-- 			,vInventories.Count
+-- 			,Emp.EmployeeID
+-- 			,Emp.EmployeeFirstName+' '+Emp.EmployeeLastName AS Employee
+-- 			,Sup.EmployeeFirstName+' '+Sup.EmployeeLastName AS Manager
+-- 		FROM vEmployees Sup
+-- 		JOIN vEmployees Emp
+-- 			ON Sup.EmployeeID=Emp.ManagerID
+-- 		JOIN vInventories
+-- 			ON vInventories.EmployeeID=Emp.EmployeeID
+-- 		JOIN vProducts
+-- 			ON vProducts.ProductID=vInventories.ProductID
+-- 		JOIN vCategories
+-- 			ON vCategories.CategoryID=vProducts.CategoryID
+-- ;
+-- GO
 
--- Step 5: Alter view to order results by inventory date, category, and product.
-ALTER VIEW vInventoriesByProductsByCategoriesByEmployees
+-- Step 5: Update view to order results by inventory date, category, and product.
+CREATE VIEW vInventoriesByProductsByCategoriesByEmployees
 	AS
 		SELECT TOP 10000
 			vCategories.CategoryID
